@@ -108,7 +108,10 @@ builder.defineStreamHandler(async ({type, id}) => {
 
 	const resp = await fetch(channel.streamUrl, { headers });
 
-	if (!resp.ok) return Promise.resolve({ streams: [] })
+	if (!resp.ok) {
+		console.log("Failed to fetch stream url", resp.status, resp.statusText);
+		return Promise.resolve({ streams: [] })
+	}
 
 	let body = await resp.text();
 	body = body.replaceAll('\\"', '"').replaceAll('\\/', '/');
