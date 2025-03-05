@@ -33,20 +33,18 @@ const channels = [
 		referer: "https://tv.bnt.bg/",
 		host: "i.cdn.bg",
 		type: "channel",
-		streamReferer: "http://i.cdn.bg/",
-		streamHost: "lb-ts.cdn.bg"
+		streamHeaders: {},
 	},
 	{
 		id: "bg:bnt2",
 		name: "BNT 2",
 		poster: "https://tv.bnt.bg/img/bnt2.svg",
 		posterShape: "landscape",
-		streamUrl: "https://cdn.bg/live/ZBPbdxDHm7",
+		streamUrl: "https://i.cdn.bg/live/ZBPbdxDHm7",
 		referer: "https://tv.bnt.bg/",
 		host: "i.cdn.bg",
 		type: "channel",
-		streamReferer: "http://i.cdn.bg/",
-		streamHost: "lb-ts.cdn.bg"
+		streamHeaders: {},
 	},
 	{
 		id: "bg:bnt3",
@@ -57,8 +55,7 @@ const channels = [
 		referer: "https://tv.bnt.bg/",
 		host: "i.cdn.bg",
 		type: "channel",
-		streamReferer: "http://i.cdn.bg/",
-		streamHost: "lb-ts.cdn.bg"
+		streamHeaders: {},
 	},
 	{
 		id: "bg:bnt4",
@@ -69,8 +66,7 @@ const channels = [
 		referer: "https://tv.bnt.bg/",
 		host: "i.cdn.bg",
 		type: "channel",
-		streamReferer: "http://i.cdn.bg/",
-		streamHost: "lb-ts.cdn.bg"
+		streamHeaders: {},
 	},
 	{
 		id: "bg:btv",
@@ -85,6 +81,7 @@ const channels = [
 		id: "bg:nova",
 		name: "NOVA",
 		poster: "https://nstatic.nova.bg/files/nova/images/nova-logo.svg",
+		posterShape: "square",
 		type: "channel",
 		streamUrl: "https://i.cdn.bg/live/0OmMKJ4SgY",
 		referer: "https://nova.bg/",
@@ -139,6 +136,7 @@ builder.defineStreamHandler(async ({type, id}) => {
 		return Promise.resolve({
 			streams: [{
 				url: `https:${matches[0]}`,
+				cacheMaxAge: 30,
 				behaviorHints: {
 					notWebReady: true,
 					proxyHeaders: {
